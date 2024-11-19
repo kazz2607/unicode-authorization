@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Admin\DashboardControlller;
+use App\Http\Controllers\Backend\DashboardControlller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +21,6 @@ Route::get('/', function () {
 Auth::routes([
     'register' => false
 ]);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::get('/',[DashboardControlller::class,'index'])->name('dashboard');
