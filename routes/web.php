@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Backend\DashboardControlller;
+use App\Http\Controllers\Backend\UsersControlller;
+use App\Http\Controllers\Backend\PostsControlller;
+use App\Http\Controllers\Backend\GroupsControlller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,4 +27,23 @@ Auth::routes([
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::get('/',[DashboardControlller::class,'index'])->name('dashboard');
+    
+    // Menu Users
+    Route::prefix('users')->name('users.')->group(function(){
+        Route::get('/',[UsersControlller::class,'index'])->name('index');
+        Route::get('/add',[UsersControlller::class,'add'])->name('add');
+    });
+    
+    // Menu Groups
+    Route::prefix('groups')->name('groups.')->group(function(){
+        Route::get('/',[GroupsControlller::class,'index'])->name('index');
+        Route::get('/add',[GroupsControlller::class,'add'])->name('add');
+    });
+    
+    // Menu Posts
+    Route::prefix('posts')->name('posts.')->group(function(){
+        Route::get('/',[PostsControlller::class,'index'])->name('index');
+        Route::get('/add',[PostsControlller::class,'add'])->name('add');
+    });
+    
 });

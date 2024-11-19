@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class DashboardControlller extends Controller
 {
-    //
     public function index(){
         // Thẻ meta
         $meta['title'] ='Trang quản trị';

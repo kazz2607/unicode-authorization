@@ -6,65 +6,58 @@
                     <!-- Navigation Item Menu -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                              <i class="fa-solid fa-house"></i>
-                            </span>
-                            <span class="nav-link-title">
-                              Home
-                            </span>
+                            <i class="fa-solid fa-house"></i> Trang chủ
                         </a>
                     </li>
                     <!-- End Navigation Item Menu -->
+
                     <!-- Navigation Item Menu -->
-                    <li class="nav-item active dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                              <i class="fa-solid fa-gear"></i>
-                            </span>
-                            <span class="nav-link-title">
-                                Layout
-                            </span>
-                        </a>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">
-                            Documentation
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Documentation
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Documentation
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Documentation
-                          </a>
-                        </div>
-                    </li>
-                    <!-- End Navigation Item Menu -->
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                          <i class="fa-solid fa-gear"></i>
-                        </span>
-                        <span class="nav-link-title">
-                          Help
-                        </span>
+                        <i class="fa-solid fa-user"></i> Thành viên
                       </a>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">
-                          Documentation
+                        <a class="dropdown-item" href="{{ route('admin.users.index') }}">
+                          Quản lý thành viên
                         </a>
-                        <a class="dropdown-item" href="#">
-                          Changelog
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Source code
-                        </a>
-                        <a class="dropdown-item text-pink" href="#" target="_blank" rel="noopener">
-                          <i class="fa-regular fa-heart"></i> Sponsor project!
+                        <a class="dropdown-item" href="{{ route('admin.users.add') }}">
+                          Thêm thành viên
                         </a>
                       </div>
                     </li>
+                    <!-- End Navigation Item Menu -->
+
+                    <!-- Navigation Item Menu -->
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                        <i class="fa-solid fa-users"></i> Nhóm thành viên
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('admin.groups.index') }}">
+                          Quản lý nhóm thành viên
+                        </a>
+                        <a class="dropdown-item" href="{{ route('admin.groups.add') }}">
+                          Thêm nhóm thành viên
+                        </a>
+                      </div>
+                    </li>
+                    <!-- End Navigation Item Menu -->
+
+                    <!-- Navigation Item Menu -->
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                        <i class="fa-solid fa-newspaper"></i> Bài viết
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('admin.posts.index') }}">
+                          Quản lý bài viết
+                        </a>
+                        <a class="dropdown-item" href="{{ route('admin.posts.add') }}">
+                          Thêm bài viết
+                        </a>
+                      </div>
+                    </li>
+                    <!-- End Navigation Item Menu -->
                 </ul>
                 <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                     <form action="./" method="get" autocomplete="off" novalidate>
