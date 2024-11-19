@@ -10,12 +10,9 @@
     <!-- CSS files -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet"/>
     <link href="{{ asset('assets/backend/css/tabler.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('assets/backend/css/tabler-flags.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('assets/backend/css/tabler-payments.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('assets/backend/css/tabler-vendors.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/backend/css/demo.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/backend/css/style.css') }}" rel="stylesheet"/>
-    
+    @yield('css')
   </head>
   <body >
     <!-- JS files -->
@@ -42,16 +39,11 @@
     <div class="modal-report">
       @include('backend.layouts.modal-report')
     </div>
-    <!-- Libs JS -->
-    <script src="{{ asset('assets/backend/libs/apexcharts/dist/apexcharts.min.js') }}" defer></script>
-    <script src="{{ asset('assets/backend/libs/jsvectormap/dist/js/jsvectormap.min.js') }}" defer></script>
-    <script src="{{ asset('assets/backend/libs/jsvectormap/dist/maps/world.js') }}" defer></script>
-    <script src="{{ asset('assets/backend/libs/jsvectormap/dist/maps/world-merc.js') }}" defer></script>
+    @yield('js')
     <!-- Tabler Core -->
     <script src="{{ asset('assets/backend/js/tabler.min.js') }}" defer></script>
     <script src="{{ asset('assets/backend/js/demo.min.js') }}" defer></script>
-    <!-- Tabler Custom JS -->
-    <script src="{{ asset('assets/backend/js/tabler-custom.js') }}" defer></script>
+    <!-- JS Custom -->
     <script src="{{ asset('assets/backend/js/custom.js') }}" defer></script>
   </body>
 </html>

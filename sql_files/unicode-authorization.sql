@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 19, 2024 at 10:38 AM
+-- Generation Time: Nov 19, 2024 at 10:12 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -172,7 +172,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `group_id`, `user_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Nguyễn Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$1uZC4D2aO1/6Xf6N3zJuAemHxv/ZFzWmLeBSwi89fL1AvqFG3.UnG', 3, 0, NULL, '2024-11-19 03:37:19', '2024-11-19 03:37:19');
+(1, 'Nguyễn Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$AnSP0cii2.fmaoKyl7jegubMQvT.GPseS6PU57sGfM6NxfB68Je86', 3, 0, 'WI1P6rTgNaIpJXypshv0T249lI0CjvsjVDZ7zXJTrRuN8O0Ke7Rq6xubYakm', '2024-11-19 03:37:19', '2024-11-19 12:56:21');
 
 --
 -- Indexes for dumped tables

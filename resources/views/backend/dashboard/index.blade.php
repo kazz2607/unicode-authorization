@@ -1782,3 +1782,19 @@
         </div>
     </div>
 @endsection
+
+@section('css')
+<link href="{{ asset('assets/backend/css/tabler-flags.min.css') }}" rel="stylesheet"/>
+<link href="{{ asset('assets/backend/css/tabler-payments.min.css') }}" rel="stylesheet"/>
+<link href="{{ asset('assets/backend/css/tabler-vendors.min.css') }}" rel="stylesheet"/>
+@endsection
+
+@section('js')
+<!-- Libs JS -->
+<script src="{{ asset('assets/backend/libs/apexcharts/dist/apexcharts.min.js') }}" defer></script>
+<script src="{{ asset('assets/backend/libs/jsvectormap/dist/js/jsvectormap.min.js') }}" defer></script>
+<script src="{{ asset('assets/backend/libs/jsvectormap/dist/maps/world.js') }}" defer></script>
+<script src="{{ asset('assets/backend/libs/jsvectormap/dist/maps/world-merc.js') }}" defer></script>
+<!-- Tabler Custom JS -->
+<script src="{{ asset('assets/backend/js/tabler-custom.js') }}" defer></script>
+@endsection

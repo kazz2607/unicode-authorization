@@ -9,3 +9,6 @@ body {
 .btn i{
     margin-right: 7px;
 }
+.page-title{
+    text-transform: capitalize;
+}

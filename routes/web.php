@@ -32,6 +32,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::prefix('users')->name('users.')->group(function(){
         Route::get('/',[UsersControlller::class,'index'])->name('index');
         Route::get('/add',[UsersControlller::class,'add'])->name('add');
+        Route::get('/edit/{user}',[UsersControlller::class,'edit'])->name('edit');
+        Route::post('/edit/{user}',[UsersControlller::class,'postEdit']);
+        Route::get('/delete/{user}',[UsersControlller::class,'delete'])->name('delete');
     });
     
     // Menu Groups
