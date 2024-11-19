@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 18, 2024 at 11:10 PM
+-- Generation Time: Nov 19, 2024 at 09:36 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -74,7 +74,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2019_08_19_000000_create_failed_jobs_table', 1),
 (11, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (12, '2024_11_18_225828_create_groups_table', 1),
-(13, '2024_11_18_225836_create_posts_table', 1);
+(13, '2024_11_18_225836_create_posts_table', 1),
+(14, '2024_11_19_092159_add_foreign_users_table', 2),
+(15, '2024_11_19_093018_add_foreign_groups_table', 3),
+(16, '2024_11_19_093335_add_foreign_posts_table', 4);
 
 -- --------------------------------------------------------
 
@@ -156,7 +159,8 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `groups_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `migrations`
@@ -182,14 +186,16 @@ ALTER TABLE `personal_access_tokens`
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `posts_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD KEY `users_group_id_foreign` (`group_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -211,7 +217,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -230,6 +236,28 @@ ALTER TABLE `posts`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `groups`
+--
+ALTER TABLE `groups`
+  ADD CONSTRAINT `groups_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_group_id_foreign` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
