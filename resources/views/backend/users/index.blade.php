@@ -76,7 +76,7 @@
                                     <td><input class="form-check-input align-middle" type="checkbox"></td>
                                     <td><span class="text-secondary">{{ $key + 1 }}</span></td>
                                     <td>
-                                        <a href="#" class="text-reset">{{ $item->name }}</a>
+                                        <a href="{{route('admin.users.edit', $item)}}" class="text-reset">{{ $item->name }}</a>
                                     </td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->group->name }}</td>

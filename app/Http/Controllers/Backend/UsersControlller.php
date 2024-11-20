@@ -64,17 +64,47 @@ class UsersControlller extends Controller
     }
 
     public function edit(User $user){
+        $groups = Groups::all();
         // Thẻ meta
         $meta['title'] ='Chỉnh sửa thành viên';
         // Return View 
-        return view('backend.users.edit', compact('meta'));
+        return view('backend.users.edit', compact('meta','groups','user'));
     }
 
-    public function postEdit(User $user){
-        
+    public function postEdit(User $user, Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'group_id' => ['required','integer', function($attribute, $value, $fail){
+                if ($value == 0){
+                    $fail('Bắt buộc phải chọn nhóm');
+                }
+            }],
+            'status' => 'required|integer',
+        ],
+        [
+            'name.required' => 'Họ tên không được để trống',
+            'email.required' => 'Email không được để trống',
+            'email.email' => 'Không phải định dạng email',
+            'email.unique' => 'Email này đã tồn tại',
+            'group_id.required' => 'Nhóm không được để trống',
+            'group_id.integer' => 'Nhóm không hợp lệ',
+            'status.required' => 'Status không được để trống',
+            'status.integer' => 'Status không hợp lệ'
+        ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if (!empty($request->password)){
+            $user->password = Hash::make($request->password);
+        }
+        $user->group_id = $request->group_id;
+        $user->status = $request->status;
+        $user->save();
+        return back()->with('msg','Chỉnh sửa thành viên thành công');
     }
 
     public function delete(User $user){
-        
+
+        return redirect()->route('admin.users.index')->with('msg','Xoá thành viên thành công');
     }
 }
