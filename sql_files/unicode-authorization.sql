@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 20, 2024 at 07:10 PM
+-- Generation Time: Nov 20, 2024 at 09:26 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -48,6 +48,7 @@ CREATE TABLE `groups` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `permissions` text COLLATE utf8mb4_unicode_ci,
   `user_id` int(10) UNSIGNED NOT NULL,
+  `status` tinyint(4) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -56,8 +57,9 @@ CREATE TABLE `groups` (
 -- Dumping data for table `groups`
 --
 
-INSERT INTO `groups` (`id`, `name`, `permissions`, `user_id`, `created_at`, `updated_at`) VALUES
-(3, 'Administrator', NULL, 0, '2024-11-19 03:37:19', '2024-11-19 03:37:19');
+INSERT INTO `groups` (`id`, `name`, `permissions`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
+(3, 'Administrator', NULL, 0, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
+(4, 'Manager', NULL, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -243,7 +245,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
