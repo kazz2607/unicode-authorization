@@ -46,6 +46,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
         Route::get('/edit/{group}',[GroupsControlller::class,'edit'])->name('edit');
         Route::post('/edit/{group}',[GroupsControlller::class,'postEdit']);
         Route::get('/delete/{group}',[GroupsControlller::class,'delete'])->name('delete');
+        Route::get('/permission/{group}',[GroupsControlller::class,'permission'])->name('permission');
+        Route::post('/permission/{group}',[GroupsControlller::class,'postPermission']);
     });
     
     // Menu Posts

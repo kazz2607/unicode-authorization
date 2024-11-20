@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Groups;
+use App\Models\Modules;
 
 class GroupsControlller extends Controller
 {
@@ -77,5 +78,33 @@ class GroupsControlller extends Controller
             return redirect()->route('admin.groups.index')->with('msg','Xoá nhóm thành viên thành công');
         }
         return redirect()->route('admin.groups.index')->with('error','Xoá không thành công ! Trong nhóm vẫn còn '.$userCount.' thành viên');
+    }
+
+    public function permission(Groups $group){
+        $modules = Modules::all();
+        $roleListArray = [
+            'view' => 'Xem',
+            'add' => 'Thêm',
+            'edit' => 'Sửa',
+            'delete' => 'Xoá',
+            // 'permission' => 'Phân quyền'
+        ];
+        // Thẻ meta
+        $meta['title'] ='Phân quyền nhóm - '.$group->name;
+        // Return View 
+        return view('backend.groups.permission', compact('meta','group','modules','roleListArray'));
+    }
+
+    public function postPermission(Groups $group, Request $request){
+        if(!empty($request->role)){
+            $roleArr = $request->role;
+        }else{
+            $roleArr = [];
+        }
+        $roleJson = json_encode($roleArr);
+        //dd($roleJson);
+        $group->permissions = $roleJson;
+        $group->save();
+        return back()->with('msg','Phân quyền nhóm '.$group->name.' thành công');
     }
 }

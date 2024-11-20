@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 20, 2024 at 09:26 PM
+-- Generation Time: Nov 20, 2024 at 11:26 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -58,8 +58,9 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `name`, `permissions`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
-(3, 'Administrator', NULL, 0, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
-(4, 'Manager', NULL, 1, 1, NULL, NULL);
+(3, 'Administrator', '{\"users\":[\"view\",\"add\",\"edit\",\"delete\"],\"groups\":[\"view\",\"add\",\"edit\",\"delete\",\"permission\"],\"posts\":[\"view\",\"add\",\"edit\",\"delete\"]}', 0, 1, '2024-11-19 03:37:19', '2024-11-20 16:22:53'),
+(4, 'Manager', NULL, 1, 1, NULL, NULL),
+(7, 'Staff', NULL, 1, 1, '2024-11-20 15:06:14', '2024-11-20 15:06:14');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,44 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2024_11_18_225836_create_posts_table', 1),
 (14, '2024_11_19_092159_add_foreign_users_table', 2),
 (15, '2024_11_19_093018_add_foreign_groups_table', 3),
-(16, '2024_11_19_093335_add_foreign_posts_table', 4);
+(16, '2024_11_19_093335_add_foreign_posts_table', 4),
+(17, '2014_10_12_100000_create_password_resets_table', 5),
+(18, '2024_11_20_222558_create_modules_table', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules`
+--
+
+CREATE TABLE `modules` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `modules`
+--
+
+INSERT INTO `modules` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'users', 'Quản lý người dùng', '2024-11-20 15:34:30', '2024-11-20 15:34:30'),
+(2, 'groups', 'Quản lý nhóm người dùng', '2024-11-20 15:34:30', '2024-11-20 15:34:30'),
+(3, 'posts', 'Quản lý bài viết', '2024-11-20 15:34:30', '2024-11-20 15:34:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -203,6 +241,18 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `modules`
+--
+ALTER TABLE `modules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
 -- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
@@ -245,13 +295,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `modules`
+--
+ALTER TABLE `modules`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
