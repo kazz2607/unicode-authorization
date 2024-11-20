@@ -25,6 +25,7 @@
     <!-- Page body -->
     <div class="page-body">
         <div class="container-xl">
+
             @if(session('msg'))
             <div class="row row-cards">
                 <div class="col-md-12">
@@ -34,6 +35,17 @@
                 </div>
             </div>
             @endif
+
+            @if(session('error'))
+            <div class="row row-cards">
+                <div class="col-md-12">
+                    <div class="alert alert-important alert-danger alert-dismissible">
+                        <i class="fa-solid fa-circle-exclamation"></i> {{ session('error') }}
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <div class="card">
                 <div class="card-body border-bottom py-3">
                     <div class="d-flex">

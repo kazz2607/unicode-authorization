@@ -14,8 +14,8 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('admin.users.index') }}" class="btn btn-primary d-none d-sm-inline-block">
-                            <i class="fa-solid fa-list"></i>Danh sách thành viên
+                        <a href="{{ route('admin.groups.index') }}" class="btn btn-primary d-none d-sm-inline-block">
+                            <i class="fa-solid fa-list"></i>Danh sách nhóm
                         </a>
                     </div>
                 </div>
@@ -49,9 +49,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3 row">
-                                <label class="col-3 col-form-label required">Họ Tên</label>
+                                <label class="col-3 col-form-label required">Tên Nhóm</label>
                             <div class="col">
-                                <input type="text" class="form-control" name="name" placeholder="Vui lòng nhập họ tên..." value="{{old('name')  ?? $user->name }}">
+                                <input type="text" class="form-control" name="name" placeholder="Vui lòng nhập họ tên..." value="{{old('name')  ?? $group->name }}">
                                 @error('name')
                                     <div class="msg-error">
                                         {{ $message }}
@@ -60,43 +60,9 @@
                             </div>
                           </div>
                           <div class="mb-3 row">
-                            <label class="col-3 col-form-label required">Địa Chỉ Email</label>
+                            <label class="col-3 col-form-label">Phân Quyền</label>
                             <div class="col">
-                                <input type="text" class="form-control" name="email" placeholder="Vui lòng nhập email..." value="{{old('email')  ?? $user->email }}">
-                                @error('email')
-                                    <div class="msg-error">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                          </div>
-                          <div class="mb-3 row">
-                            <label class="col-3 col-form-label required">Mật Khẩu</label>
-                            <div class="col">
-                              <input type="password" class="form-control" name="password" placeholder="Vui lòng nhập mật khẩu..." value="{{ old('password') }}">
-                                @error('password')
-                                    <div class="msg-error">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                          </div>
-                          <div class="mb-3 row">
-                            <label class="col-3 col-form-label">Nhóm Thành Viên</label>
-                            <div class="col">
-                              <select class="form-select" name="group_id">
-                                <option value="0" selected>Chọn nhóm người dùng</option>
-                                @if (!empty($groups))
-                                    @foreach ($groups as $item)
-                                        <option value="{{ $item->id }}" {{ $user->group_id == $item->id ? 'selected':false}} >{{ $item->name }}</option>
-                                    @endforeach
-                                @endif
-                                </select>
-                                @error('group_id')
-                                  <div class="msg-error">
-                                      {{ $message }}
-                                  </div>
-                                @enderror
+                              Phân quyền
                             </div>
                           </div>
                         </div>
@@ -110,14 +76,14 @@
                         <div class="card-body">
                            <!-- Box Item -->
                           <div class="mb-3">
-                            <label class="form-label">Kích hoạt thành viên</label>
+                            <label class="form-label">Kích hoạt nhóm</label>
                             <div>
                               <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" value="{{old('status') ?? '1' }}" {{ $user->status == '1' ? 'checked':false}}>
+                                <input class="form-check-input" type="radio" name="status" value="{{old('status') ?? '1' }}" {{ $group->status == '1' ? 'checked':false}}>
                                 <label class="form-check-label">Kích hoạt</label>
                               </div>
                               <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="status" value="{{old('status') ?? '0' }}" {{ $user->status == '0' ? 'checked':false}}>
+                                  <input class="form-check-input" type="radio" name="status" value="{{old('status') ?? '0' }}" {{ $group->status == '0' ? 'checked':false}}>
                                   <label class="form-check-label">Chưa kích hoạt</label>
                               </div>
                             </div>
