@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Groups;
 
 class UsersControlller extends Controller
 {
@@ -17,10 +20,47 @@ class UsersControlller extends Controller
     }
 
     public function add(){
+
+        $groups = Groups::all();
         // Thẻ meta
         $meta['title'] ='Thêm thành viên';
         // Return View 
-        return view('backend.users.add', compact('meta'));
+        return view('backend.users.add', compact('meta','groups'));
+    }
+
+    public function postAdd( Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'group_id' => ['required','integer', function($attribute, $value, $fail){
+                if ($value == 0){
+                    $fail('Bắt buộc phải chọn nhóm');
+                }
+            }],
+            'status' => 'required|integer',
+        ],
+        [
+            'name.required' => 'Họ tên không được để trống',
+            'email.required' => 'Email không được để trống',
+            'email.email' => 'Không phải định dạng email',
+            'email.unique' => 'Email này đã tồn tại',
+            'password.required' => 'Password không được để trống',
+            'group_id.required' => 'Nhóm không được để trống',
+            'group_id.integer' => 'Nhóm không hợp lệ',
+            'status.required' => 'Status không được để trống',
+            'status.integer' => 'Status không hợp lệ'
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->group_id = $request->group_id;
+        $user->user_id = Auth::user()->id;
+        $user->status = $request->status;
+        $user->save();
+        return redirect()->route('admin.users.index')->with('msg','Thêm thành viên thành công');
     }
 
     public function edit(User $user){

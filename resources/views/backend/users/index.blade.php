@@ -25,6 +25,15 @@
     <!-- Page body -->
     <div class="page-body">
         <div class="container-xl">
+            @if(session('msg'))
+            <div class="row row-cards">
+                <div class="col-md-12">
+                    <div class="alert alert-important alert-success alert-dismissible">
+                        <i class="fa-solid fa-check"></i> {{ session('msg') }}
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-body border-bottom py-3">
                     <div class="d-flex">
@@ -73,7 +82,11 @@
                                     <td>{{ $item->group->name }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td>
-                                        <span class="badge bg-success me-1"></span> Active
+                                        @if($item->status == 1)
+                                            <span class="badge bg-success"></span> Kích hoạt
+                                        @else
+                                            <span class="badge bg-danger"></span> Chưa kích hoạt
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{route('admin.users.edit', $item)}}" class="btn">Chỉnh sửa</a>

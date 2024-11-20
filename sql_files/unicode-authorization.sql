@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 19, 2024 at 10:12 PM
+-- Generation Time: Nov 20, 2024 at 10:22 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -163,6 +163,7 @@ CREATE TABLE `users` (
   `group_id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -171,8 +172,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `group_id`, `user_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Nguyễn Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$AnSP0cii2.fmaoKyl7jegubMQvT.GPseS6PU57sGfM6NxfB68Je86', 3, 0, 'WI1P6rTgNaIpJXypshv0T249lI0CjvsjVDZ7zXJTrRuN8O0Ke7Rq6xubYakm', '2024-11-19 03:37:19', '2024-11-19 12:56:21');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `group_id`, `user_id`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Nguyễn Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$AnSP0cii2.fmaoKyl7jegubMQvT.GPseS6PU57sGfM6NxfB68Je86', 3, 0, 'HfhNXovnUXdn1kMpknMdVaNCs4xnW80nQgKYOD7ILAfrSoifFbMcrMVX3qsb', 1, '2024-11-19 03:37:19', '2024-11-19 12:56:21'),
+(2, 'Nguyễn Anh Tuấn', 'nguyentuanltc@gmail.com', NULL, '$2y$12$a3PZVHXRR75ds/rQ2XSWNe8ZQGAqi50/8zsxpfibvDPxYm/eBBtUq', 3, 1, NULL, 1, '2024-11-20 02:59:38', '2024-11-20 02:59:38'),
+(3, 'Nguyễn Anh Tuấn 2', 'nguyentuan@gmail.com', NULL, '$2y$12$it.XuMLVayJZMVPJRaOV5u75Xtvs8cXTQN.q64vtYzfVJq.hkLb9q', 3, 1, NULL, 1, '2024-11-20 03:01:59', '2024-11-20 03:01:59'),
+(4, 'Nguyễn Anh Tuấn', 'nguyentuan.doctor@gmail.com', NULL, '$2y$12$aylZlkZ9xKRGnN/8SDUcIuGi3Jw08NzrW55ZFTSTJiC9vzdFaRiye', 3, 1, NULL, 0, '2024-11-20 03:02:53', '2024-11-20 03:02:53');
 
 --
 -- Indexes for dumped tables
@@ -265,7 +269,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

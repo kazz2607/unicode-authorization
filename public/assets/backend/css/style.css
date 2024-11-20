@@ -12,3 +12,8 @@ body {
 .page-title{
     text-transform: capitalize;
 }
+.card-body .msg-error{
+    color: red;
+    padding: 5px;
+    font-size: 0.8rem;
+}
