@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 21, 2024 at 02:34 PM
+-- Generation Time: Nov 21, 2024 at 06:13 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -59,7 +59,7 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `permissions`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
 (3, 'Administrator', '{\"users\":[\"view\",\"add\",\"edit\",\"delete\"],\"groups\":[\"view\",\"add\",\"edit\",\"delete\",\"permission\"],\"posts\":[\"view\",\"add\",\"edit\",\"delete\"]}', 0, 1, '2024-11-19 03:37:19', '2024-11-20 16:22:53'),
-(4, 'Manager', '{\"users\":[\"view\",\"add\",\"edit\"],\"groups\":[\"view\",\"add\",\"edit\"],\"posts\":[\"view\",\"add\",\"edit\"]}', 1, 1, NULL, '2024-11-21 03:08:09'),
+(4, 'Manager', '[]', 1, 1, NULL, '2024-11-21 09:02:56'),
 (7, 'Staff', '{\"users\":[\"view\"],\"groups\":[\"view\"],\"posts\":[\"view\"]}', 1, 1, '2024-11-20 15:06:14', '2024-11-21 03:09:24');
 
 -- --------------------------------------------------------
@@ -186,8 +186,7 @@ INSERT INTO `posts` (`id`, `title`, `content`, `user_id`, `status`, `created_at`
 (7, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
 (8, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
 (9, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
-(10, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
-(11, 'Test', 'Nội dung', 1, 1, '2024-11-21 07:19:46', '2024-11-21 07:19:46');
+(10, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19');
 
 -- --------------------------------------------------------
 
@@ -214,8 +213,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `group_id`, `user_id`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Nguyễn Anh Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$AnSP0cii2.fmaoKyl7jegubMQvT.GPseS6PU57sGfM6NxfB68Je86', 3, 0, 'HfhNXovnUXdn1kMpknMdVaNCs4xnW80nQgKYOD7ILAfrSoifFbMcrMVX3qsb', 1, '2024-11-19 03:37:19', '2024-11-20 07:51:11'),
-(3, 'Nguyễn Tuấn', 'nguyentuan@gmail.com', NULL, '$2y$12$it.XuMLVayJZMVPJRaOV5u75Xtvs8cXTQN.q64vtYzfVJq.hkLb9q', 3, 1, NULL, 1, '2024-11-20 03:01:59', '2024-11-20 07:51:28');
+(1, 'Nguyễn Anh Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$AnSP0cii2.fmaoKyl7jegubMQvT.GPseS6PU57sGfM6NxfB68Je86', 3, 0, 'l6hJv9xAgAmilPSY5Q3KzCYuh95xElBz8vy0ge6WbXdHZ0M5KX0K7YT5DPpg', 1, '2024-11-19 03:37:19', '2024-11-20 07:51:11'),
+(3, 'Nguyễn Tuấn', 'nguyentuanltc@gmail.com', NULL, '$2y$12$it.XuMLVayJZMVPJRaOV5u75Xtvs8cXTQN.q64vtYzfVJq.hkLb9q', 4, 1, NULL, 1, '2024-11-20 03:01:59', '2024-11-20 07:51:28');
 
 --
 -- Indexes for dumped tables
@@ -320,7 +319,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

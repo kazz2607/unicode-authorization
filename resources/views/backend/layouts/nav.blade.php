@@ -6,15 +6,15 @@
                     <!-- Navigation Item Menu -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                            <i class="fa-solid fa-house"></i> Trang chủ
+                            <i class="fa-solid fa-house"></i>Dashboard
                         </a>
                     </li>
                     <!-- End Navigation Item Menu -->
-
+                    @can('users')
                     <!-- Navigation Item Menu -->
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                        <i class="fa-solid fa-user"></i> Thành viên
+                        <i class="fa-solid fa-user"></i>Thành viên
                       </a>
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('admin.users.index') }}">
@@ -26,11 +26,12 @@
                       </div>
                     </li>
                     <!-- End Navigation Item Menu -->
-
+                    @endcan
+                    @can('groups')
                     <!-- Navigation Item Menu -->
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                        <i class="fa-solid fa-users"></i> Nhóm thành viên
+                        <i class="fa-solid fa-users"></i>Nhóm thành viên
                       </a>
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('admin.groups.index') }}">
@@ -42,11 +43,12 @@
                       </div>
                     </li>
                     <!-- End Navigation Item Menu -->
-
+                    @endcan
+                    @can('posts')
                     <!-- Navigation Item Menu -->
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                        <i class="fa-solid fa-newspaper"></i> Bài viết
+                        <i class="fa-solid fa-newspaper"></i>Bài viết
                       </a>
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('admin.posts.index') }}">
@@ -58,6 +60,7 @@
                       </div>
                     </li>
                     <!-- End Navigation Item Menu -->
+                    @endcan
                 </ul>
                 <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                     <form action="./" method="get" autocomplete="off" novalidate>

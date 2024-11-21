@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
      <!-- CSRF Token -->
      <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $meta['title'] }} - {{ config('app.name', 'Laravel') }}</title>
+    <title>{{ !empty($meta['title']) ? $meta['title'] : 'Dashboard' }} - {{ config('app.name', 'Laravel') }}</title>
     <!-- CSS files -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet"/>
     <link href="{{ asset('assets/backend/css/tabler.min.css') }}" rel="stylesheet"/>

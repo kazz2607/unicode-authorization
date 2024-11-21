@@ -29,7 +29,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::get('/',[DashboardControlller::class,'index'])->name('dashboard');
     
     // Menu Users
-    Route::prefix('users')->name('users.')->group(function(){
+    Route::prefix('users')->name('users.')->middleware('can:users')->group(function(){
         Route::get('/',[UsersControlller::class,'index'])->name('index');
         Route::get('/add',[UsersControlller::class,'add'])->name('add');
         Route::post('/add',[UsersControlller::class,'postAdd']);
@@ -39,7 +39,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     });
     
     // Menu Groups
-    Route::prefix('groups')->name('groups.')->group(function(){
+    Route::prefix('groups')->name('groups.')->middleware('can:groups')->group(function(){
         Route::get('/',[GroupsControlller::class,'index'])->name('index');
         Route::get('/add',[GroupsControlller::class,'add'])->name('add');
         Route::post('/add',[GroupsControlller::class,'postAdd']);
@@ -51,7 +51,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     });
     
     // Menu Posts
-    Route::prefix('posts')->name('posts.')->group(function(){
+    Route::prefix('posts')->name('posts.')->middleware('can:posts')->group(function(){
         Route::get('/',[PostsControlller::class,'index'])->name('index');
         Route::get('/add',[PostsControlller::class,'add'])->name('add');
         Route::post('/add',[PostsControlller::class,'postAdd']);

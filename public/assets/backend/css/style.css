@@ -12,6 +12,9 @@ body {
 .page-title{
     text-transform: capitalize;
 }
+.empty-header{
+    font-size: 6rem;
+}
 .card-body .msg-error{
     color: red;
     padding: 5px;
