@@ -4,13 +4,7 @@
         <div class="col-lg-auto ms-lg-auto">
           <ul class="list-inline list-inline-dots mb-0">
             <li class="list-inline-item">
-                <a href="#" target="_blank" class="link-secondary">Documentation</a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" target="_blank" class="link-secondary">Documentation</a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" target="_blank" class="link-secondary">Documentation</a>
+                <a href="https://laravel.com/" target="_blank" class="link-secondary">Documentation</a>
             </li>
           </ul>
         </div>

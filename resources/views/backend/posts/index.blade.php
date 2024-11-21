@@ -104,9 +104,7 @@
                                         <a href="{{route('admin.posts.edit', $item)}}" class="btn">Chỉnh sửa</a>
                                     </td>
                                     <td>
-                                        @if(Auth::user()->id == $item->user_id)
-                                            <a onclick="return confirm('Bạn có chắc chắn ?')" href="{{route('admin.posts.delete', $item)}}" class="btn">Xoá</a>
-                                        @endif
+                                        <a onclick="return confirm('Bạn có chắc chắn ?')" href="{{route('admin.posts.delete', $item)}}" class="btn">Xoá</a>
                                     </td>
                                 </tr>
                                 @endforeach

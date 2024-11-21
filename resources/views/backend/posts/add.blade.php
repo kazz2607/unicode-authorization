@@ -53,9 +53,7 @@
                           <div class="mb-3 row">
                             <label class="col-3 col-form-label required">Nội Dung</label>
                             <div class="col">
-                                <textarea rows="10" class="form-control" name="content" placeholder="Vui lòng nhập nội dung..." value="{{old('content')}}">
-                                  {{old('content')}}
-                                </textarea>
+                                <textarea rows="10" class="form-control" name="content" placeholder="Vui lòng nhập nội dung..." value="{{old('content')}}">{{old('content')}}</textarea>
                                 @error('content')
                                     <div class="msg-error">
                                         {{ $message }}

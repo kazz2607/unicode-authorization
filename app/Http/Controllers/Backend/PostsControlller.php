@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class PostsControlller extends Controller
 {
     public function index(){
-        $lists = Posts::all();
+        $lists = Posts::orderBy('created_at','desc')->get();
         // Thẻ meta
         $meta['title'] ='Quản lý bài viết';
         // Return View 
@@ -76,10 +76,7 @@ class PostsControlller extends Controller
     }
 
     public function delete(Posts $post){
-        if (Auth::user()->id == $post->user_id){
-            Posts::destroy($post->id);
-            return redirect()->route('admin.posts.index')->with('msg','Xoá bài viết thành công');
-        }
-        return redirect()->route('admin.posts.index')->with('msg','Bạn không thể xoá bài viết này');
+        Posts::destroy($post->id);
+        return redirect()->route('admin.posts.index')->with('msg','Xoá bài viết thành công');
     }
 }
