@@ -54,6 +54,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::prefix('posts')->name('posts.')->group(function(){
         Route::get('/',[PostsControlller::class,'index'])->name('index');
         Route::get('/add',[PostsControlller::class,'add'])->name('add');
+        Route::post('/add',[PostsControlller::class,'postAdd']);
+        Route::get('/edit/{post}',[PostsControlller::class,'edit'])->name('edit');
+        Route::post('/edit/{post}',[PostsControlller::class,'postEdit']);
+        Route::get('/delete/{post}',[PostsControlller::class,'delete'])->name('delete');
     });
     
 });
