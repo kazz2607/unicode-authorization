@@ -103,7 +103,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @can('edit', App\Model\Posts::class )
+                                        @can('posts.edit', App\Model\Posts::class )
                                         <a href="{{route('admin.posts.edit', $item)}}" class="btn">Chỉnh sửa</a>
                                         @endcan
                                     </td>

@@ -46,7 +46,7 @@ class AuthServiceProvider extends ServiceProvider
                     return false;
                 });
 
-                Gate::define($module->name.'edit', function(User $user) use ($module) {
+                Gate::define($module->name.'.edit', function(User $user) use ($module) {
                     $roleJson = $user->group->permissions;
                     if(!empty($roleJson)){
                         $roleArr = json_decode($roleJson, true);

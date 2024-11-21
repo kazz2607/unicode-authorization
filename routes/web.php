@@ -56,7 +56,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
         Route::get('/',[PostsControlller::class,'index'])->name('index')->can('viewAny', Posts::class);
         Route::get('/add',[PostsControlller::class,'add'])->name('add')->can('create', Posts::class);
         Route::post('/add',[PostsControlller::class,'postAdd'])->can('create', Posts::class);
-        Route::get('/edit/{post}',[PostsControlller::class,'edit'])->name('edit')->can('edit', Posts::class);
+        Route::get('/edit/{post}',[PostsControlller::class,'edit'])->name('edit')->can('posts.edit', Posts::class);
         Route::post('/edit/{post}',[PostsControlller::class,'postEdit']);
         Route::get('/delete/{post}',[PostsControlller::class,'delete'])->name('delete');
     });
