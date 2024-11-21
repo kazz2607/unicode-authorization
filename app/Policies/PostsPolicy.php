@@ -58,7 +58,7 @@ class PostsPolicy
      */
     public function delete(User $user, Posts $posts): bool
     {
-        
+        return $user->id === $posts->user_id;
     }
 
     /**

@@ -79,8 +79,12 @@
                                 <th>Người Đăng</th>
                                 <th>Ngày Tạo</th>
                                 <th>Trình trạng</th>
+                                @can('posts.edit')
                                 <th class="w-2">Sửa</th>
+                                @endcan
+                                @can('posts.delete')
                                 <th class="w-2">Xoá</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -102,16 +106,16 @@
                                             <span class="badge bg-danger"></span> Chưa kích hoạt
                                         @endif
                                     </td>
+                                    @can('posts.edit')
                                     <td>
-                                        @can('posts.edit', App\Model\Posts::class )
-                                        <a href="{{route('admin.posts.edit', $item)}}" class="btn">Chỉnh sửa</a>
-                                        @endcan
+                                        <a href="{{route('admin.posts.edit', $item)}}" class="btn">Chỉnh sửa</a> 
                                     </td>
+                                    @endcan
+                                    @can('posts.delete')
                                     <td>
-                                        
                                         <a onclick="return confirm('Bạn có chắc chắn ?')" href="{{route('admin.posts.delete', $item)}}" class="btn">Xoá</a>
-                                        
                                     </td>
+                                    @endcan
                                 </tr>
                                 @endforeach
                             @endif

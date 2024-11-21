@@ -80,6 +80,7 @@ class PostsControlller extends Controller
     }
 
     public function delete(Posts $post){
+        $this->authorize('delete', $post);
         Posts::destroy($post->id);
         return redirect()->route('admin.posts.index')->with('msg','Xoá bài viết thành công');
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 21, 2024 at 06:13 PM
+-- Generation Time: Nov 21, 2024 at 09:44 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -59,7 +59,7 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `permissions`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
 (3, 'Administrator', '{\"users\":[\"view\",\"add\",\"edit\",\"delete\"],\"groups\":[\"view\",\"add\",\"edit\",\"delete\",\"permission\"],\"posts\":[\"view\",\"add\",\"edit\",\"delete\"]}', 0, 1, '2024-11-19 03:37:19', '2024-11-20 16:22:53'),
-(4, 'Manager', '[]', 1, 1, NULL, '2024-11-21 09:02:56'),
+(4, 'Manager', '{\"posts\":[\"view\",\"add\",\"edit\",\"delete\"]}', 1, 1, NULL, '2024-11-21 14:40:42'),
 (7, 'Staff', '{\"users\":[\"view\"],\"groups\":[\"view\"],\"posts\":[\"view\"]}', 1, 1, '2024-11-20 15:06:14', '2024-11-21 03:09:24');
 
 -- --------------------------------------------------------
@@ -178,15 +178,15 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `content`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 3, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
-(3, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
 (4, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
 (5, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
 (6, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
 (7, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
 (8, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
 (9, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
-(10, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19');
+(10, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 1, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
+(11, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 3, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19'),
+(12, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 3, 1, '2024-11-19 03:37:19', '2024-11-19 03:37:19');
 
 -- --------------------------------------------------------
 
@@ -319,7 +319,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -36,6 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         $modulesList = Modules::all();
         if ($modulesList->count() > 0){
             foreach ($modulesList as $module) {
+                /** Quyền xem bài viết */
                 Gate::define($module->name, function(User $user) use ($module) {
                     $roleJson = $user->group->permissions;
                     if(!empty($roleJson)){
@@ -45,12 +46,22 @@ class AuthServiceProvider extends ServiceProvider
                     }
                     return false;
                 });
-
+                /** Quyền chỉnh sửa bài viết */
                 Gate::define($module->name.'.edit', function(User $user) use ($module) {
                     $roleJson = $user->group->permissions;
                     if(!empty($roleJson)){
                         $roleArr = json_decode($roleJson, true);
                         $check = isRole( $roleArr, $module->name, 'edit');
+                        return $check;
+                    }
+                    return false;
+                });
+                /** Quyền xoá bài viết */
+                Gate::define($module->name.'.delete', function(User $user) use ($module) {
+                    $roleJson = $user->group->permissions;
+                    if(!empty($roleJson)){
+                        $roleArr = json_decode($roleJson, true);
+                        $check = isRole( $roleArr, $module->name, 'delete');
                         return $check;
                     }
                     return false;
