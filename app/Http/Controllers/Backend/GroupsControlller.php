@@ -89,10 +89,18 @@ class GroupsControlller extends Controller
             'delete' => 'Xoá',
             // 'permission' => 'Phân quyền'
         ];
+
+        $roleJson = $group->permissions;
+        if(!empty($roleJson)){
+            $roleArr = json_decode($roleJson,true);
+        }else{
+            $roleArr = [];
+        }
+        
         // Thẻ meta
         $meta['title'] ='Phân quyền nhóm - '.$group->name;
         // Return View 
-        return view('backend.groups.permission', compact('meta','group','modules','roleListArray'));
+        return view('backend.groups.permission', compact('meta','group','modules','roleListArray','roleArr'));
     }
 
     public function postPermission(Groups $group, Request $request){
@@ -102,7 +110,6 @@ class GroupsControlller extends Controller
             $roleArr = [];
         }
         $roleJson = json_encode($roleArr);
-        //dd($roleJson);
         $group->permissions = $roleJson;
         $group->save();
         return back()->with('msg','Phân quyền nhóm '.$group->name.' thành công');

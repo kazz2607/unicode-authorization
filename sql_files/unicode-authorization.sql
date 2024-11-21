@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 20, 2024 at 11:26 PM
+-- Generation Time: Nov 21, 2024 at 10:25 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -59,8 +59,8 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `permissions`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
 (3, 'Administrator', '{\"users\":[\"view\",\"add\",\"edit\",\"delete\"],\"groups\":[\"view\",\"add\",\"edit\",\"delete\",\"permission\"],\"posts\":[\"view\",\"add\",\"edit\",\"delete\"]}', 0, 1, '2024-11-19 03:37:19', '2024-11-20 16:22:53'),
-(4, 'Manager', NULL, 1, 1, NULL, NULL),
-(7, 'Staff', NULL, 1, 1, '2024-11-20 15:06:14', '2024-11-20 15:06:14');
+(4, 'Manager', '{\"users\":[\"view\",\"add\",\"edit\"],\"groups\":[\"view\",\"add\",\"edit\"],\"posts\":[\"view\",\"add\",\"edit\"]}', 1, 1, NULL, '2024-11-21 03:08:09'),
+(7, 'Staff', '{\"users\":[\"view\"],\"groups\":[\"view\"],\"posts\":[\"view\"]}', 1, 1, '2024-11-20 15:06:14', '2024-11-21 03:09:24');
 
 -- --------------------------------------------------------
 
