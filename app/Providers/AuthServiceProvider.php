@@ -31,7 +31,6 @@ class AuthServiceProvider extends ServiceProvider
          * 
          * 
         */
-
         $modulesList = Modules::all();
         if ($modulesList->count() > 0){
             foreach ($modulesList as $module) {
