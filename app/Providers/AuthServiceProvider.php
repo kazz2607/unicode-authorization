@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Groups;
 use App\Models\Posts;
 use App\Policies\PostsPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
@@ -20,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Posts::class => PostsPolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**

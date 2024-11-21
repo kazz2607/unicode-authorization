@@ -12,7 +12,12 @@ use App\Models\Groups;
 class UsersControlller extends Controller
 {
     public function index(){
-        $lists = User::all();
+        
+        if (Auth::user()->user_id == 0){
+            $lists = User::all();
+        }else{
+            $lists = User::where('user_id', Auth::user()->id)->get();
+        }
         // Thẻ meta
         $meta['title'] ='Quản lý thành viên';
         // Return View 
@@ -64,6 +69,7 @@ class UsersControlller extends Controller
     }
 
     public function edit(User $user){
+        $this->authorize('update', $user);
         $groups = Groups::all();
         // Thẻ meta
         $meta['title'] ='Chỉnh sửa thành viên';
@@ -72,6 +78,7 @@ class UsersControlller extends Controller
     }
 
     public function postEdit(User $user, Request $request){
+        $this->authorize('update', $user);
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,
@@ -104,6 +111,7 @@ class UsersControlller extends Controller
     }
 
     public function delete(User $user){
+        $this->authorize('delete', $user);
         if (Auth::user()->id != $user->id)
         {
             User::destroy($user->id);

@@ -20,9 +20,11 @@
                         <a class="dropdown-item" href="{{ route('admin.users.index') }}">
                           Quản lý thành viên
                         </a>
+                        @can('create', App\Model\User::class )
                         <a class="dropdown-item" href="{{ route('admin.users.add') }}">
                           Thêm thành viên
                         </a>
+                        @endcan
                       </div>
                     </li>
                     <!-- End Navigation Item Menu -->

@@ -14,9 +14,11 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
+                        @can('create', App\Model\User::class )
                         <a href="{{ route('admin.users.add') }}" class="btn btn-primary d-none d-sm-inline-block">
                             <i class="fa-solid fa-plus"></i>Thêm thành viên
                         </a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -77,8 +79,12 @@
                                 <th>Nhóm</th>
                                 <th>Ngày Tạo</th>
                                 <th>Trình trạng</th>
+                                @can('users.edit')
                                 <th class="w-2">Sửa</th>
+                                @endcan
+                                @can('users.delete')
                                 <th class="w-2">Xoá</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -100,14 +106,18 @@
                                             <span class="badge bg-danger"></span> Chưa kích hoạt
                                         @endif
                                     </td>
+                                    @can('users.edit')
                                     <td>
                                         <a href="{{route('admin.users.edit', $item)}}" class="btn">Chỉnh sửa</a>
                                     </td>
+                                    @endcan
+                                    @can('users.delete')
                                     <td>
                                         @if(Auth::user()->id !== $item->id)
                                             <a onclick="return confirm('Bạn có chắc chắn ?')" href="{{route('admin.users.delete', $item)}}" class="btn">Xoá</a>
                                         @endif
                                     </td>
+                                    @endcan
                                 </tr>
                                 @endforeach
                             @endif

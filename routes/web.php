@@ -7,6 +7,8 @@ use App\Http\Controllers\Backend\UsersControlller;
 use App\Http\Controllers\Backend\PostsControlller;
 use App\Http\Controllers\Backend\GroupsControlller;
 use App\Models\Posts;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,11 +34,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     // Menu Users
     Route::prefix('users')->name('users.')->middleware('can:users')->group(function(){
         Route::get('/',[UsersControlller::class,'index'])->name('index');
-        Route::get('/add',[UsersControlller::class,'add'])->name('add');
-        Route::post('/add',[UsersControlller::class,'postAdd']);
-        Route::get('/edit/{user}',[UsersControlller::class,'edit'])->name('edit');
+        Route::get('/add',[UsersControlller::class,'add'])->name('add')->can('create', User::class);
+        Route::post('/add',[UsersControlller::class,'postAdd'])->can('create', User::class);
+        Route::get('/edit/{user}',[UsersControlller::class,'edit'])->name('edit')->can('users.edit', User::class);
         Route::post('/edit/{user}',[UsersControlller::class,'postEdit']);
-        Route::get('/delete/{user}',[UsersControlller::class,'delete'])->name('delete');
+        Route::get('/delete/{user}',[UsersControlller::class,'delete'])->name('delete')->can('users.delete', User::class);
     });
     
     // Menu Groups
@@ -53,7 +55,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     
     // Menu Posts
     Route::prefix('posts')->name('posts.')->middleware('can:posts')->group(function(){
-        Route::get('/',[PostsControlller::class,'index'])->name('index')->can('viewAny', Posts::class);
+        Route::get('/',[PostsControlller::class,'index'])->name('index');
         Route::get('/add',[PostsControlller::class,'add'])->name('add')->can('create', Posts::class);
         Route::post('/add',[PostsControlller::class,'postAdd'])->can('create', Posts::class);
         Route::get('/edit/{post}',[PostsControlller::class,'edit'])->name('edit')->can('posts.edit', Posts::class);
