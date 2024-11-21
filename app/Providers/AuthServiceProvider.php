@@ -7,6 +7,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use App\Models\Modules;
 use App\Models\User;
 use App\Models\Groups;
+use App\Models\Posts;
+use App\Policies\PostsPolicy;
 use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
@@ -17,7 +19,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        Posts::class => PostsPolicy::class,
     ];
 
     /**
@@ -42,7 +44,17 @@ class AuthServiceProvider extends ServiceProvider
                         return $check;
                     }
                     return false;
-                }); 
+                });
+
+                Gate::define($module->name.'edit', function(User $user) use ($module) {
+                    $roleJson = $user->group->permissions;
+                    if(!empty($roleJson)){
+                        $roleArr = json_decode($roleJson, true);
+                        $check = isRole( $roleArr, $module->name, 'edit');
+                        return $check;
+                    }
+                    return false;
+                });
             }
         }
 

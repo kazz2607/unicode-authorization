@@ -14,9 +14,11 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
+                        @can('create', App\Model\Posts::class )
                         <a href="{{ route('admin.posts.add') }}" class="btn btn-primary d-none d-sm-inline-block">
                             <i class="fa-solid fa-plus"></i>Thêm bài viết
                         </a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -101,10 +103,14 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @can('edit', App\Model\Posts::class )
                                         <a href="{{route('admin.posts.edit', $item)}}" class="btn">Chỉnh sửa</a>
+                                        @endcan
                                     </td>
                                     <td>
+                                        
                                         <a onclick="return confirm('Bạn có chắc chắn ?')" href="{{route('admin.posts.delete', $item)}}" class="btn">Xoá</a>
+                                        
                                     </td>
                                 </tr>
                                 @endforeach

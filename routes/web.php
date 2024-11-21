@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\DashboardControlller;
 use App\Http\Controllers\Backend\UsersControlller;
 use App\Http\Controllers\Backend\PostsControlller;
 use App\Http\Controllers\Backend\GroupsControlller;
+use App\Models\Posts;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,10 +53,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     
     // Menu Posts
     Route::prefix('posts')->name('posts.')->middleware('can:posts')->group(function(){
-        Route::get('/',[PostsControlller::class,'index'])->name('index');
-        Route::get('/add',[PostsControlller::class,'add'])->name('add');
-        Route::post('/add',[PostsControlller::class,'postAdd']);
-        Route::get('/edit/{post}',[PostsControlller::class,'edit'])->name('edit');
+        Route::get('/',[PostsControlller::class,'index'])->name('index')->can('viewAny', Posts::class);
+        Route::get('/add',[PostsControlller::class,'add'])->name('add')->can('create', Posts::class);
+        Route::post('/add',[PostsControlller::class,'postAdd'])->can('create', Posts::class);
+        Route::get('/edit/{post}',[PostsControlller::class,'edit'])->name('edit')->can('edit', Posts::class);
         Route::post('/edit/{post}',[PostsControlller::class,'postEdit']);
         Route::get('/delete/{post}',[PostsControlller::class,'delete'])->name('delete');
     });

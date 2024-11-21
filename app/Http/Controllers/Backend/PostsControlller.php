@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class PostsControlller extends Controller
 {
     public function index(){
-        $lists = Posts::orderBy('created_at','desc')->get();
+        $lists = Posts::orderBy('created_at','desc')
+        ->where('user_id', Auth::user()->id)
+        ->get();
         // Thẻ meta
         $meta['title'] ='Quản lý bài viết';
         // Return View 
@@ -49,6 +51,7 @@ class PostsControlller extends Controller
     }
 
     public function edit(Posts $post){
+        $this->authorize('update', $post);
         // Thẻ meta
         $meta['title'] ='Chỉnh sửa bài viết';
         // Return View 
@@ -56,6 +59,7 @@ class PostsControlller extends Controller
     }
 
     public function postEdit(Posts $post, Request $request){
+        $this->authorize('update', $post);
         $request->validate([
             'title' => 'required|unique:posts,title,'.$post->id,
             'content' => 'required',

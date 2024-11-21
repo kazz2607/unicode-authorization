@@ -54,9 +54,11 @@
                         <a class="dropdown-item" href="{{ route('admin.posts.index') }}">
                           Quản lý bài viết
                         </a>
+                        @can('create', App\Model\Posts::class )
                         <a class="dropdown-item" href="{{ route('admin.posts.add') }}">
                           Thêm bài viết
                         </a>
+                        @endcan
                       </div>
                     </li>
                     <!-- End Navigation Item Menu -->
