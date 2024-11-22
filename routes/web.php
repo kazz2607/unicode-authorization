@@ -35,33 +35,33 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     // Menu Users
     Route::prefix('users')->name('users.')->middleware('can:users')->group(function(){
         Route::get('/',[UsersControlller::class,'index'])->name('index');
-        Route::get('/add',[UsersControlller::class,'add'])->name('add')->can('create', User::class);
-        Route::post('/add',[UsersControlller::class,'postAdd'])->can('create', User::class);
-        Route::get('/edit/{user}',[UsersControlller::class,'edit'])->name('edit')->can('users.edit', User::class);
-        Route::post('/edit/{user}',[UsersControlller::class,'postEdit']);
-        Route::get('/delete/{user}',[UsersControlller::class,'delete'])->name('delete')->can('users.delete', User::class);
+        Route::get('/add',[UsersControlller::class,'add'])->name('add')->can('users.add');
+        Route::post('/add',[UsersControlller::class,'postAdd'])->can('users.add');
+        Route::get('/edit/{user}',[UsersControlller::class,'edit'])->name('edit')->can('users.edit');
+        Route::post('/edit/{user}',[UsersControlller::class,'postEdit'])->can('users.edit');
+        Route::get('/delete/{user}',[UsersControlller::class,'delete'])->name('delete')->can('users.delete');
     });
     
     // Menu Groups
     Route::prefix('groups')->name('groups.')->middleware('can:groups')->group(function(){
         Route::get('/',[GroupsControlller::class,'index'])->name('index');
-        Route::get('/add',[GroupsControlller::class,'add'])->name('add')->can('create', Groups::class);
-        Route::post('/add',[GroupsControlller::class,'postAdd'])->can('create', Groups::class);
-        Route::get('/edit/{group}',[GroupsControlller::class,'edit'])->name('edit')->can('groups.edit', Groups::class);
-        Route::post('/edit/{group}',[GroupsControlller::class,'postEdit']);
-        Route::get('/delete/{group}',[GroupsControlller::class,'delete'])->name('delete')->can('groups.delete', Groups::class);
-        Route::get('/permission/{group}',[GroupsControlller::class,'permission'])->name('permission')->can('groups.permission', Groups::class);
-        Route::post('/permission/{group}',[GroupsControlller::class,'postPermission'])->can('groups.permission', Groups::class);
+        Route::get('/add',[GroupsControlller::class,'add'])->name('add')->can('groups.add');
+        Route::post('/add',[GroupsControlller::class,'postAdd'])->can('groups.add');
+        Route::get('/edit/{group}',[GroupsControlller::class,'edit'])->name('edit')->can('groups.edit');
+        Route::post('/edit/{group}',[GroupsControlller::class,'postEdit'])->can('groups.edit');
+        Route::get('/delete/{group}',[GroupsControlller::class,'delete'])->name('delete')->can('groups.delete');
+        Route::get('/permission/{group}',[GroupsControlller::class,'permission'])->name('permission')->can('groups.permission');
+        Route::post('/permission/{group}',[GroupsControlller::class,'postPermission'])->can('groups.permission');
     });
     
     // Menu Posts
     Route::prefix('posts')->name('posts.')->middleware('can:posts')->group(function(){
         Route::get('/',[PostsControlller::class,'index'])->name('index');
-        Route::get('/add',[PostsControlller::class,'add'])->name('add')->can('create', Posts::class);
-        Route::post('/add',[PostsControlller::class,'postAdd'])->can('create', Posts::class);
-        Route::get('/edit/{post}',[PostsControlller::class,'edit'])->name('edit')->can('posts.edit', Posts::class);
-        Route::post('/edit/{post}',[PostsControlller::class,'postEdit']);
-        Route::get('/delete/{post}',[PostsControlller::class,'delete'])->name('delete')->can('posts.delete', Posts::class);
+        Route::get('/add',[PostsControlller::class,'add'])->name('add')->can('posts.add');
+        Route::post('/add',[PostsControlller::class,'postAdd'])->can('posts.add');
+        Route::get('/edit/{post}',[PostsControlller::class,'edit'])->name('edit')->can('posts.edit');
+        Route::post('/edit/{post}',[PostsControlller::class,'postEdit'])->can('posts.edit');
+        Route::get('/delete/{post}',[PostsControlller::class,'delete'])->name('delete')->can('posts.delete');
     });
     
 });

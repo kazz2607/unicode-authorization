@@ -50,6 +50,16 @@ class AuthServiceProvider extends ServiceProvider
                     }
                     return false;
                 });
+                /** Quyền thêm */
+                Gate::define($module->name.'.add', function(User $user) use ($module) {
+                    $roleJson = $user->group->permissions;
+                    if(!empty($roleJson)){
+                        $roleArr = json_decode($roleJson, true);
+                        $check = isRole( $roleArr, $module->name, 'add');
+                        return $check;
+                    }
+                    return false;
+                });
                 /** Quyền chỉnh sửa */
                 Gate::define($module->name.'.edit', function(User $user) use ($module) {
                     $roleJson = $user->group->permissions;

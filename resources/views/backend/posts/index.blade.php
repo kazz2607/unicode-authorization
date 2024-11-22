@@ -14,7 +14,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        @can('create', App\Model\Posts::class )
+                        @can('posts.add')
                         <a href="{{ route('admin.posts.add') }}" class="btn btn-primary d-none d-sm-inline-block">
                             <i class="fa-solid fa-plus"></i>Thêm bài viết
                         </a>

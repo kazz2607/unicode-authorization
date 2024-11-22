@@ -20,7 +20,7 @@
                         <a class="dropdown-item" href="{{ route('admin.users.index') }}">
                           Quản lý thành viên
                         </a>
-                        @can('create', App\Model\User::class )
+                        @can('users.add')
                         <a class="dropdown-item" href="{{ route('admin.users.add') }}">
                           Thêm thành viên
                         </a>
@@ -39,7 +39,7 @@
                         <a class="dropdown-item" href="{{ route('admin.groups.index') }}">
                           Quản lý nhóm thành viên
                         </a>
-                        @can('create', App\Model\Groups::class )
+                        @can('groups.add')
                         <a class="dropdown-item" href="{{ route('admin.groups.add') }}">
                           Thêm nhóm thành viên
                         </a>
@@ -58,7 +58,7 @@
                         <a class="dropdown-item" href="{{ route('admin.posts.index') }}">
                           Quản lý bài viết
                         </a>
-                        @can('create', App\Model\Posts::class )
+                        @can('posts.add')
                         <a class="dropdown-item" href="{{ route('admin.posts.add') }}">
                           Thêm bài viết
                         </a>

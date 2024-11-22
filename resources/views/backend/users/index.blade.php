@@ -14,7 +14,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        @can('create', App\Model\User::class )
+                        @can('users.add')
                         <a href="{{ route('admin.users.add') }}" class="btn btn-primary d-none d-sm-inline-block">
                             <i class="fa-solid fa-plus"></i>Thêm thành viên
                         </a>
