@@ -11,7 +11,11 @@ use App\Models\Modules;
 class GroupsControlller extends Controller
 {
     public function index(){
-        $lists = Groups::all();
+        if (Auth::user()->user_id == 0){
+            $lists = Groups::all();
+        }else{
+            $lists = Groups::where('user_id', Auth::user()->id)->get();
+        }
         // Thẻ meta
         $meta['title'] ='Quản lý nhóm thành viên';
         // Return View 
@@ -46,6 +50,7 @@ class GroupsControlller extends Controller
     }
 
     public function edit(Groups $group){
+        $this->authorize('update', $group);
         // Thẻ meta
         $meta['title'] ='Chỉnh sửa nhóm thành viên';
         // Return View 
@@ -53,6 +58,7 @@ class GroupsControlller extends Controller
     }
 
     public function postEdit(Groups $group, Request $request){
+        $this->authorize('update', $group);
         $request->validate([
             'name' => 'required|unique:groups,name,'.$group->id,
             'status' => 'required|integer',
@@ -72,6 +78,7 @@ class GroupsControlller extends Controller
     }
 
     public function delete(Groups $group){
+        $this->authorize('delete', $group);
         $userCount = $group->users->count();
         if($userCount == 0){
             Groups::destroy($group->id);
@@ -81,6 +88,7 @@ class GroupsControlller extends Controller
     }
 
     public function permission(Groups $group){
+        $this->authorize('permission', $group);
         $modules = Modules::all();
         $roleListArray = [
             'view' => 'Xem',
@@ -104,6 +112,7 @@ class GroupsControlller extends Controller
     }
 
     public function postPermission(Groups $group, Request $request){
+        $this->authorize('permission', $group);
         if(!empty($request->role)){
             $roleArr = $request->role;
         }else{

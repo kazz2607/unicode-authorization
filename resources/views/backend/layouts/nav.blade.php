@@ -39,9 +39,11 @@
                         <a class="dropdown-item" href="{{ route('admin.groups.index') }}">
                           Quản lý nhóm thành viên
                         </a>
+                        @can('create', App\Model\Groups::class )
                         <a class="dropdown-item" href="{{ route('admin.groups.add') }}">
                           Thêm nhóm thành viên
                         </a>
+                        @endcan
                       </div>
                     </li>
                     <!-- End Navigation Item Menu -->

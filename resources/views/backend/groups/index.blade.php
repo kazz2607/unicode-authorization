@@ -14,9 +14,11 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
+                        @can('create', App\Model\Groups::class )
                         <a href="{{ route('admin.groups.add') }}" class="btn btn-primary d-none d-sm-inline-block">
                             <i class="fa-solid fa-plus"></i>Thêm nhóm thành viên
                         </a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -74,11 +76,17 @@
                                 <th class="w-1">STT</th>
                                 <th>Tên Nhóm</th>
                                 <th>Người Đăng</th>
+                                @can('groups.permission')
                                 <th>Phân Quyền</th>
+                                @endcan
                                 <th>Ngày Tạo</th>
                                 <th>Trình trạng</th>
+                                @can('groups.edit')
                                 <th class="w-2">Sửa</th>
+                                @endcan
+                                @can('groups.delete')
                                 <th class="w-2">Xoá</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -91,9 +99,11 @@
                                         <a href="{{route('admin.groups.edit', $item)}}" class="text-reset">{{ $item->name }}</a>
                                     </td>
                                     <td>{{ !empty($item->postBy->name) ? $item->postBy->name : false }}</td>
+                                    @can('groups.permission')
                                     <td>
                                         <a href="{{route('admin.groups.permission', $item)}}" class="btn btn-primary">Phân quyền</a>
                                     </td>
+                                    @endcan
                                     <td>{{ $item->created_at }}</td>
                                     <td>
                                         @if($item->status == 1)
@@ -102,14 +112,16 @@
                                             <span class="badge bg-danger"></span> Chưa kích hoạt
                                         @endif
                                     </td>
+                                    @can('groups.edit')
                                     <td>
                                         <a href="{{route('admin.groups.edit', $item)}}" class="btn">Chỉnh sửa</a>
                                     </td>
+                                    @endcan
+                                    @can('groups.delete')
                                     <td>
-                                        @if(Auth::user()->id !== $item->id)
-                                            <a onclick="return confirm('Bạn có chắc chắn ?')" href="{{route('admin.groups.delete', $item)}}" class="btn">Xoá</a>
-                                        @endif
+                                        <a onclick="return confirm('Bạn có chắc chắn ?')" href="{{route('admin.groups.delete', $item)}}" class="btn">Xoá</a>
                                     </td>
+                                    @endcan
                                 </tr>
                                 @endforeach
                             @endif

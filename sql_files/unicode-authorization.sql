@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 21, 2024 at 09:44 PM
+-- Generation Time: Nov 22, 2024 at 01:33 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -59,8 +59,9 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `permissions`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
 (3, 'Administrator', '{\"users\":[\"view\",\"add\",\"edit\",\"delete\"],\"groups\":[\"view\",\"add\",\"edit\",\"delete\",\"permission\"],\"posts\":[\"view\",\"add\",\"edit\",\"delete\"]}', 0, 1, '2024-11-19 03:37:19', '2024-11-20 16:22:53'),
-(4, 'Manager', '{\"posts\":[\"view\",\"add\",\"edit\",\"delete\"]}', 1, 1, NULL, '2024-11-21 14:40:42'),
-(7, 'Staff', '{\"users\":[\"view\"],\"groups\":[\"view\"],\"posts\":[\"view\"]}', 1, 1, '2024-11-20 15:06:14', '2024-11-21 03:09:24');
+(4, 'Manager', '{\"users\":[\"view\"],\"groups\":[\"view\",\"add\",\"edit\",\"delete\",\"permission\"],\"posts\":[\"view\",\"add\",\"edit\",\"delete\"]}', 1, 1, NULL, '2024-11-22 02:52:53'),
+(7, 'Staff', '{\"users\":[\"view\"],\"groups\":[\"view\"],\"posts\":[\"view\"]}', 1, 1, '2024-11-20 15:06:14', '2024-11-21 03:09:24'),
+(8, 'Sales', NULL, 3, 1, '2024-11-22 05:10:11', '2024-11-22 05:10:11');
 
 -- --------------------------------------------------------
 
@@ -214,7 +215,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `group_id`, `user_id`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Nguyễn Anh Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$AnSP0cii2.fmaoKyl7jegubMQvT.GPseS6PU57sGfM6NxfB68Je86', 3, 0, 'l6hJv9xAgAmilPSY5Q3KzCYuh95xElBz8vy0ge6WbXdHZ0M5KX0K7YT5DPpg', 1, '2024-11-19 03:37:19', '2024-11-20 07:51:11'),
-(3, 'Nguyễn Tuấn', 'nguyentuanltc@gmail.com', NULL, '$2y$12$it.XuMLVayJZMVPJRaOV5u75Xtvs8cXTQN.q64vtYzfVJq.hkLb9q', 4, 1, NULL, 1, '2024-11-20 03:01:59', '2024-11-20 07:51:28');
+(3, 'Nguyễn Tuấn', 'nguyentuanltc@gmail.com', NULL, '$2y$12$it.XuMLVayJZMVPJRaOV5u75Xtvs8cXTQN.q64vtYzfVJq.hkLb9q', 4, 1, 'VKXMVHx1CTGnEBNckC4u5Vli4o2b9DS2T7SwVLDFNnGBebvWNY2iCfmsDL78', 1, '2024-11-20 03:01:59', '2024-11-20 07:51:28');
 
 --
 -- Indexes for dumped tables
@@ -295,7 +296,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `migrations`

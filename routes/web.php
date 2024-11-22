@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\DashboardControlller;
 use App\Http\Controllers\Backend\UsersControlller;
 use App\Http\Controllers\Backend\PostsControlller;
 use App\Http\Controllers\Backend\GroupsControlller;
+use App\Models\Groups;
 use App\Models\Posts;
 use App\Models\User;
 
@@ -44,13 +45,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     // Menu Groups
     Route::prefix('groups')->name('groups.')->middleware('can:groups')->group(function(){
         Route::get('/',[GroupsControlller::class,'index'])->name('index');
-        Route::get('/add',[GroupsControlller::class,'add'])->name('add');
-        Route::post('/add',[GroupsControlller::class,'postAdd']);
-        Route::get('/edit/{group}',[GroupsControlller::class,'edit'])->name('edit');
+        Route::get('/add',[GroupsControlller::class,'add'])->name('add')->can('create', Groups::class);
+        Route::post('/add',[GroupsControlller::class,'postAdd'])->can('create', Groups::class);
+        Route::get('/edit/{group}',[GroupsControlller::class,'edit'])->name('edit')->can('groups.edit', Groups::class);
         Route::post('/edit/{group}',[GroupsControlller::class,'postEdit']);
-        Route::get('/delete/{group}',[GroupsControlller::class,'delete'])->name('delete');
-        Route::get('/permission/{group}',[GroupsControlller::class,'permission'])->name('permission');
-        Route::post('/permission/{group}',[GroupsControlller::class,'postPermission']);
+        Route::get('/delete/{group}',[GroupsControlller::class,'delete'])->name('delete')->can('groups.delete', Groups::class);
+        Route::get('/permission/{group}',[GroupsControlller::class,'permission'])->name('permission')->can('groups.permission', Groups::class);
+        Route::post('/permission/{group}',[GroupsControlller::class,'postPermission'])->can('groups.permission', Groups::class);
     });
     
     // Menu Posts

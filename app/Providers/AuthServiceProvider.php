@@ -10,6 +10,7 @@ use App\Models\Groups;
 use App\Models\Posts;
 use App\Policies\PostsPolicy;
 use App\Policies\UserPolicy;
+use App\Policies\GroupsPolicy;
 use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
@@ -22,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Posts::class => PostsPolicy::class,
         User::class => UserPolicy::class,
+        Groups::class => GroupsPolicy::class,
     ];
 
     /**
@@ -64,6 +66,16 @@ class AuthServiceProvider extends ServiceProvider
                     if(!empty($roleJson)){
                         $roleArr = json_decode($roleJson, true);
                         $check = isRole( $roleArr, $module->name, 'delete');
+                        return $check;
+                    }
+                    return false;
+                });
+                /** Quyền phân quyền */
+                Gate::define($module->name.'.permission', function(User $user) use ($module) {
+                    $roleJson = $user->group->permissions;
+                    if(!empty($roleJson)){
+                        $roleArr = json_decode($roleJson, true);
+                        $check = isRole( $roleArr, $module->name, 'permission');
                         return $check;
                     }
                     return false;
