@@ -28,6 +28,7 @@
             <form method="POST" action="{{ route('admin.posts.add') }}">
             @csrf
             <div class="row row-cards">
+                
               @if($errors->any())
                 <div class="col-md-12">
                   <div class="alert alert-important alert-danger alert-dismissible">
