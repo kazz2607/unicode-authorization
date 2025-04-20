@@ -67,6 +67,26 @@
                     </li>
                     <!-- End Navigation Item Menu -->
                     @endcan
+
+                    @can('mailers')
+                    <!-- Navigation Item Menu -->
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                        <i class="fa-solid fa-newspaper"></i>Quản lý mailer
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('admin.mailers.index') }}">
+                          Quản lý mailer
+                        </a>
+                        @can('mailers.add')
+                        <a class="dropdown-item" href="{{ route('admin.mailers.add') }}">
+                          Thêm mailer
+                        </a>
+                        @endcan
+                      </div>
+                    </li>
+                    <!-- End Navigation Item Menu -->
+                    @endcan
                 </ul>
                 <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                     <form action="./" method="get" autocomplete="off" novalidate>

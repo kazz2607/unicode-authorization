@@ -18,14 +18,14 @@ class GroupsControlller extends Controller
         }
         // Thẻ meta
         $meta['title'] ='Quản lý nhóm thành viên';
-        // Return View 
+        // Return View
         return view('backend.groups.index', compact('meta','lists'));
     }
 
     public function add(){
         // Thẻ meta
         $meta['title'] ='Thêm nhóm thành viên';
-        // Return View 
+        // Return View
         return view('backend.groups.add', compact('meta'));
     }
 
@@ -53,7 +53,7 @@ class GroupsControlller extends Controller
         $this->authorize('update', $group);
         // Thẻ meta
         $meta['title'] ='Chỉnh sửa nhóm thành viên';
-        // Return View 
+        // Return View
         return view('backend.groups.edit', compact('meta','group'));
     }
 
@@ -104,10 +104,10 @@ class GroupsControlller extends Controller
         }else{
             $roleArr = [];
         }
-        
+
         // Thẻ meta
         $meta['title'] ='Phân quyền nhóm - '.$group->name;
-        // Return View 
+        // Return View
         return view('backend.groups.permission', compact('meta','group','modules','roleListArray','roleArr'));
     }
 
@@ -124,3 +124,4 @@ class GroupsControlller extends Controller
         return back()->with('msg','Phân quyền nhóm '.$group->name.' thành công');
     }
 }
+ 

@@ -1,14 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Backend\DashboardControlller;
-use App\Http\Controllers\Backend\UsersControlller;
-use App\Http\Controllers\Backend\PostsControlller;
-use App\Http\Controllers\Backend\GroupsControlller;
-use App\Models\Groups;
-use App\Models\Posts;
 use App\Models\User;
+use App\Models\Posts;
+use App\Models\Groups;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\PostsControlller;
+use App\Http\Controllers\Backend\UsersControlller;
+use App\Http\Controllers\Backend\GroupsControlller;
+use App\Http\Controllers\Backend\MailersController;
+use App\Http\Controllers\Backend\DashboardControlller;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Auth::routes([
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::get('/',[DashboardControlller::class,'index'])->name('dashboard');
-    
+
     // Menu Users
     Route::prefix('users')->name('users.')->middleware('can:users')->group(function(){
         Route::get('/',[UsersControlller::class,'index'])->name('index');
@@ -41,7 +42,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
         Route::post('/edit/{user}',[UsersControlller::class,'postEdit'])->can('users.edit');
         Route::get('/delete/{user}',[UsersControlller::class,'delete'])->name('delete')->can('users.delete');
     });
-    
+
     // Menu Groups
     Route::prefix('groups')->name('groups.')->middleware('can:groups')->group(function(){
         Route::get('/',[GroupsControlller::class,'index'])->name('index');
@@ -53,7 +54,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
         Route::get('/permission/{group}',[GroupsControlller::class,'permission'])->name('permission')->can('groups.permission');
         Route::post('/permission/{group}',[GroupsControlller::class,'postPermission'])->can('groups.permission');
     });
-    
+
     // Menu Posts
     Route::prefix('posts')->name('posts.')->middleware('can:posts')->group(function(){
         Route::get('/',[PostsControlller::class,'index'])->name('index');
@@ -63,5 +64,16 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
         Route::post('/edit/{post}',[PostsControlller::class,'postEdit'])->can('posts.edit');
         Route::get('/delete/{post}',[PostsControlller::class,'delete'])->name('delete')->can('posts.delete');
     });
-    
+
+    // Menu Posts
+    Route::prefix('mailers')->name('mailers.')->middleware('can:mailers')->group(function(){
+        Route::get('/',[MailersController::class,'index'])->name('index');
+        Route::get('/add',[MailersController::class,'add'])->name('add')->can('mailers.add');
+        Route::post('/add',[MailersController::class,'store'])->can('mailers.add');
+        Route::get('/edit/{mailer}',[MailersController::class,'edit'])->name('edit')->can('mailers.edit');
+        Route::post('/edit/{mailer}',[MailersController::class,'upload'])->can('mailers.edit');
+        Route::get('/delete/{mailer}',[MailersController::class,'delete'])->name('delete')->can('mailers.delete');
+        Route::get('/send/{mailer}',[MailersController::class,'send'])->name('send');
+    });
+
 });
