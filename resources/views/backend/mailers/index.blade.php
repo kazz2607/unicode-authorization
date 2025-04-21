@@ -16,7 +16,7 @@
                     <div class="btn-list">
                         @can('mailers.add')
                         <a href="{{ route('admin.mailers.add') }}" class="btn btn-primary d-none d-sm-inline-block">
-                            <i class="fa-solid fa-plus"></i>Thêm mailer
+                            <i class="fa-solid fa-plus"></i>Thêm Mailer
                         </a>
                         @endcan
                     </div>
@@ -96,17 +96,17 @@
                                     <td><input class="form-check-input align-middle" type="checkbox"></td>
                                     <td><span class="text-secondary">{{ $key + 1 }}</span></td>
                                     <td>
-                                        <a href="{{route('admin.posts.edit', $item)}}" class="text-reset">{{ $item->title }}</a>
+                                        <a href="{{route('admin.mailers.edit', $item)}}" class="text-reset">{{ $item->title }}</a>
                                     </td>
                                     {{-- <td>Chuyên Mục</td> --}}
                                     <td>{{ !empty($item->postBy->name) ? $item->postBy->name : false }}</td>
                                     <td>{{ $item->created_at->format('Y-m-d') }}</td>
-                                    <td>
-                                        @if($item->status == 1)
+                                    <td><span class="badge bg-success"></span> Kích hoạt
+                                        {{-- @if($item->status == 1)
                                             <span class="badge bg-success"></span> Kích hoạt
                                         @else
                                             <span class="badge bg-danger"></span> Chưa kích hoạt
-                                        @endif
+                                        @endif --}}
                                     </td>
                                     <td>
                                         <a href="{{route('admin.mailers.send', $item)}}" class="btn btn-success">Gửi Mail</a>
@@ -121,7 +121,6 @@
                                         <a onclick="return confirm('Bạn có chắc chắn ?')" href="{{route('admin.mailers.delete', $item)}}" class="btn">Xoá</a>
                                     </td>
                                     @endcan
-
                                 </tr>
                                 @endforeach
                             @endif
@@ -129,7 +128,7 @@
                     </table>
                 </div>
                 <div class="card-footer d-flex align-items-center">
-                    Pagination
+                    {{ $lists->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

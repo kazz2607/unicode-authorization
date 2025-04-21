@@ -32,7 +32,7 @@ class MailNotification extends Notification
         return (new MailMessage)
                     ->subject('Thông tin bảng lương - '.$this->data[0])
                     ->greeting($this->mailer['title'])
-                    ->view('emails.mailer.index', [
+                    ->view('emails.mailer.mailer', [
                         'data' => $this->data,
                         'email' => $this->mailer,
                     ]);

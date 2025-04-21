@@ -71,7 +71,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
         Route::get('/add',[MailersController::class,'add'])->name('add')->can('mailers.add');
         Route::post('/add',[MailersController::class,'store'])->can('mailers.add');
         Route::get('/edit/{mailer}',[MailersController::class,'edit'])->name('edit')->can('mailers.edit');
-        Route::post('/edit/{mailer}',[MailersController::class,'upload'])->can('mailers.edit');
+        Route::post('/edit/{mailer}',[MailersController::class,'mailerEdit'])->can('mailers.edit');
         Route::get('/delete/{mailer}',[MailersController::class,'delete'])->name('delete')->can('mailers.delete');
         Route::get('/send/{mailer}',[MailersController::class,'send'])->name('send');
     });

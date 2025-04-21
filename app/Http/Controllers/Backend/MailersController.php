@@ -15,9 +15,9 @@ class MailersController extends Controller
 {
     public function index()
     {
-        $lists = Mailers::orderBy('created_at', 'desc')->get();
+        $lists = Mailers::orderBy('created_at', 'desc')->paginate(10);
         // Thẻ meta
-        $meta['title'] = 'Quản lý mailer';
+        $meta['title'] = 'Quản lý Mailer';
         // Return View
         return view('backend.mailers.index', compact('meta','lists'));
     }
@@ -25,7 +25,7 @@ class MailersController extends Controller
     public function add()
     {
         // Thẻ meta
-        $meta['title'] = 'Thêm mailer';
+        $meta['title'] = 'Thêm Mailer';
         // Return View
         return view('backend.mailers.add', compact('meta'));
     }
@@ -61,7 +61,7 @@ class MailersController extends Controller
         }
         /** End Upload File ------*/
         $mailer->save();
-        return redirect()->route('admin.mailers.index')->with('msg', 'Thêm mailer thành công');
+        return redirect()->route('admin.mailers.index')->with('msg', 'Thêm Mailer thành công');
     }
 
     public function send(Mailers $mailer)
@@ -90,7 +90,7 @@ class MailersController extends Controller
     foreach ($emailChunks as $chunk) {
         foreach ($chunk as $row) {
             // Kiểm tra và lấy dữ liệu từ các cột
-            $email = $row[2] ?? null; // Cột thứ 3 (index 2) chứa email
+            $email = $row[5] ?? null; // Cột thứ 3 (index 2) chứa email
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 // Gửi thông báo qua Notification
                 Notification::route('mail', $email)->notify(new MailNotification($row, $mailer));
@@ -103,12 +103,45 @@ class MailersController extends Controller
     return redirect()->route('admin.mailers.index')->with('msg', 'Gửi email thành công');
 }
 
-    public function edit()
+    public function edit(Mailers $mailer)
     {
+        // $this->authorize('update', $mailer);
+        // Kiểm tra nếu file tồn tại
+        $mailer = Mailers::find($mailer->id);
         // Thẻ meta
-        $meta['title'] = 'Chỉnh sửa mailer';
+        $meta['title'] = 'Chỉnh sửa Mailer';
         // Return View
-        return view('backend.mailers.edit', compact('meta'));
+        return view('backend.mailers.edit', compact('meta','mailer'));
+    }
+
+    public function mailerEdit(Mailers $mailer, Request $request)
+    {
+        // $this->authorize('update', $mailer);
+        $request->validate([
+            'title' => 'required|unique:mailers,title,' . $mailer->id,
+            'content' => 'required',
+            'file' => 'nullable',
+        ], [
+            'title.required' => 'Tên mailer không được để trống',
+            'title.unique' => 'Tên mailer này đã tồn tại',
+            'content.required' => 'Nội dung không được để trống',
+        ]);
+        $mailer->title = $request->title;
+        $mailer->content = $request->content;
+        if ($request->file('file')) {
+            if ($mailer->file) {
+                Storage::delete($mailer->file);
+            }
+            $file = $request->file('file');
+            // Lưu file vào thư mục 'mailers' trong storage
+            $path = $file->store('mailers');
+            // Lưu đường dẫn file vào cơ sở dữ liệu
+            $mailer->file = $path;
+        }else{
+            $mailer->file = $mailer->file;
+        }
+        $mailer->save();
+        return redirect()->route('admin.mailers.index')->with('msg', 'Cập nhật Mailer thành công');
     }
 
     public function delete(Mailers $mailer)
@@ -118,6 +151,6 @@ class MailersController extends Controller
             Storage::delete($mailer->file);
         }
         $mailer->delete();
-        return redirect()->route('admin.mailers.index')->with('msg', 'Xóa mailer thành công');
+        return redirect()->route('admin.mailers.index')->with('msg', 'Xóa Mailer thành công');
     }
 }

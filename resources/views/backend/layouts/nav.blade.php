@@ -72,15 +72,15 @@
                     <!-- Navigation Item Menu -->
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                        <i class="fa-solid fa-newspaper"></i>Quản lý mailer
+                        <i class="fa-solid fa-newspaper"></i>Quản lý Mailer
                       </a>
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('admin.mailers.index') }}">
-                          Quản lý mailer
+                          Quản lý Mailer
                         </a>
                         @can('mailers.add')
                         <a class="dropdown-item" href="{{ route('admin.mailers.add') }}">
-                          Thêm mailer
+                          Thêm Mailer
                         </a>
                         @endcan
                       </div>

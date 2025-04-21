@@ -41,79 +41,71 @@
 </head>
 <body>
   <div class="container">
-    <p>Công ty Phần Mềm Việt Tin</p>
-    <h2>PHIẾU LƯƠNG THÁNG 12/2020</h2>
+    <p><strong>CÔNG TY CỔ PHẦN VIETTRONICS THỦ ĐỨC</strong></p>
+    <h2>{{ $email['title'] }}</h2>
 
     <table>
       <tr>
-        <td colspan="2"><strong>Họ tên:</strong> PHẠM THỊ CHÚC LY</td>
-        <td><strong>Mã NV:</strong> VTS5311</td>
+        <td width="33%"><strong>Họ tên:</strong> {{ $data[0] }}</td>
+        <td width="33%"><strong>Mã NV:</strong> {{ $data[1] }}</td>
+        <td><strong>Chức danh:</strong> {{ $data[2] }}</td>
       </tr>
       <tr>
-        <td colspan="2"><strong>Chức danh:</strong> Công nhân</td>
-        <td><strong>Mã BP:</strong> XƯỞNG 04-ĐÁ</td>
-      </tr>
-      <tr>
-        <td><strong>Nhận việc:</strong> 19/03/2016</td>
-        <td><strong>Số TK:</strong> 0631000449323</td>
-        <td><strong>Lương HĐLĐ:</strong> 4,410,000</td>
-      </tr>
-      <tr>
-        <td><strong>MST TNCN:</strong> 8396543222</td>
-        <td><strong>Số người phụ thuộc:</strong></td>
-        <td><strong>Công chính hưởng P/C:</strong> 25</td>
+        <td><strong>MST:</strong> {{ $data[3] }}</td>
+        <td><strong>Số người phụ thuộc:</strong> {{ $data[4] }}</td>
+        <td><strong>Ngày công tháng:</strong> {{ $data[25] }}</td>
       </tr>
     </table>
 
     <table>
       <tr>
-        <th colspan="2">Công chính</th>
-        <th colspan="2">Hỗ trợ phụ cấp</th>
+        <th colspan="2" width="33%">Công</th>
+        <th colspan="2" width="33%">Thu nhập</th>
         <th colspan="2">Các khoản khấu trừ</th>
       </tr>
       <tr>
-        <td>Công chính</td><td>17.50</td>
-        <td>Thưởng chuyên cần</td><td></td>
-        <td>BHXH (8%)</td><td class="right">352,800</td>
+        <td>Công đi làm</td><td class="right">{{ $data[6] }}</td>
+        <td>Lương chính</td><td class="right">{{ convertToVND($data[11]) }}</td>
+        <td>BHXH</td><td class="right">{{ convertToVND($data[18]) }}</td>
       </tr>
       <tr>
-        <td>Lương chính</td><td class="right">3,850,000</td>
-        <td>Hỗ trợ nhà trọ</td><td class="right">100,000</td>
-        <td>BHYT (4.5%)</td><td class="right">198,450</td>
+        <td>Ngày cơm</td><td class="right">{{ $data[9] }}</td>
+        <td>Tiền cơm</td><td class="right">{{ convertToVND($data[13]) }}</td>
+        <td>Đoàn phí</td><td class="right">{{ convertToVND($data[20]) }}</td>
       </tr>
       <tr>
-        <td>Công làm thêm</td><td>10.25</td>
-        <td>Hỗ trợ đi lại</td><td class="right">134,615</td>
-        <td>BHTN (1%)</td><td class="right">44,100</td>
+        <td>Công làm thêm</td><td class="right">{{ $data[8] }}</td>
+        <td>Lương làm thêm</td><td class="right">{{ convertToVND($data[12]) }}</td>
+        <td>Đảng phí</td><td class="right">{{ convertToVND($data[21]) }}</td>
       </tr>
       <tr>
-        <td>Lương làm thêm</td><td class="right">2,255,000</td>
-        <td>Phép năm</td><td class="right">220,000</td>
-        <td>Thuế TNCN</td><td></td>
+        <td>Công phép</td><td class="right">{{ $data[7] }}</td>
+        <td>Thù lao, phụ cấp</td><td class="right">{{ convertToVND($data[13]) }}</td>
+        <td>Thuế TNCN</td><td class="right">{{ convertToVND($data[18]) }}</td>
       </tr>
       <tr>
-        <td>Thu nhập khác</td><td></td>
-        <td>Chăm sóc sức khoẻ, độc hại</td><td></td>
-        <td>Khác</td><td></td>
+        <td>Công khoán</td><td class="right">{{ $data[10] }}</td>
+        <td>Khác</td><td class="right">{{ convertToVND($data[14]) }}</td>
+        <td>Khác</td><td class="right">{{ convertToVND($data[22]) }}</td>
       </tr>
     </table>
 
     <table>
       <tr>
-        <td><strong>Thực lĩnh lương (1)</strong></td>
-        <td class="highlight right">5,964,265</td>
+        <td width="66%"><strong>Tổng Thu nhập (1)</strong></td>
+        <td class="highlight right">{{ convertToVND($data[16]) }}</td>
       </tr>
       <tr>
-        <td><strong>P/cấp công tác (2)</strong></td>
-        <td class="right"></td>
+        <td><strong> Tổng các khoản khấu trừ (2)</strong></td>
+        <td class="right">{{ convertToVND($data[17]) }}</td>
       </tr>
       <tr>
-        <td><strong>Tổng cộng (1)+(2)</strong></td>
-        <td class="highlight right">5,964,265</td>
+        <td><strong>Còn được nhận (1) - (2)</strong></td>
+        <td class="highlight right">{{ convertToVND($data[23]) }}</td>
       </tr>
       <tr>
         <td><strong>Ghi chú</strong></td>
-        <td></td>
+        <td class="right">{{ $data[24] }}</td>
       </tr>
     </table>
   </div>

@@ -15,7 +15,7 @@
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
                         <a href="{{ route('admin.mailers.index') }}" class="btn btn-primary d-none d-sm-inline-block">
-                            <i class="fa-solid fa-list"></i>Danh sách mailers
+                            <i class="fa-solid fa-list"></i>Danh sách Mailer
                         </a>
                     </div>
                 </div>
@@ -71,8 +71,8 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                            </div>
                         </div>
-                      </div>
                         </div>
                         <div class="card-footer text-end">
                           <button type="submit" class="btn btn-primary">Submit</button>

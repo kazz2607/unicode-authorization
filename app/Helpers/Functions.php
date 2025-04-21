@@ -8,3 +8,9 @@ function isRole($dataArr, $moduleName, $role='view'){
     }
     return false;
 }
+
+
+function convertToVND($amount)
+{
+    return number_format($amount, 0, ',', '.') . ' đ';
+}
